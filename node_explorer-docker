@@ -1,3 +1,9 @@
+prometheus server运行
+docker run -p 9090:9090 -v /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+
+
+##also to mount your local prometheus.yml on /etc/prometheus/prometheus.yml
+
 node_explorer 运行
 ##offical advice expose 9100
 docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  quay.io/prometheus/node-exporter
