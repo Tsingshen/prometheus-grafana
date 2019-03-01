@@ -1,5 +1,5 @@
   node_explorer 运行
-  docerk run -d \
+  docker run -d \
    --net="host" \
    --pid="host" \
    -v "/:/host:ro,rsalve" \
