@@ -1,5 +1,5 @@
 prometheus server运行
-docker run -p 9090:9090 -v /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+docker run -d -p 9090:9090 -v /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 
 ##also to mount your local prometheus.yml on /etc/prometheus/prometheus.yml
