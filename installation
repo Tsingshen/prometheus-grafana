@@ -1,14 +1,28 @@
 prometheus server运行
+##https://prometheus.io/docs/introduction/overview/
 docker run -d -p 9090:9090 -v /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 ##also to mount your local prometheus.yml on /etc/prometheus/prometheus.yml
 
 node_explorer 运行
 ##offical advice expose 9100
+#https://github.com/prometheus/node_exporter
 docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  quay.io/prometheus/node-exporter
 
 
 grafana运行
 docker run -d -u root -p 3000:3000 --name=grafana -v /data/grafana:/var/lib/grafana grafana/grafana
+#http:docs.grafana.org/
 ###安装plugin记得查看说明，插件有依赖的要安装，比如node-exporter需要安装grafana-cli plugins install grafana-piechart-panel
 
+
+altermanager 运行
+
+
+dokcer-exporer 运行
+
+
+pushGateway 运行
+
+
+k8s集成
