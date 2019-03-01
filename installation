@@ -9,5 +9,5 @@ docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  quay.io/prometheus/
 
 
 grafana运行
-docker run -d -p 3000:3000 grafana/grafana
+docker run -d -p 3000:3000 --name= grafana -v /data/grafana:/var/lib/grafana grafana/grafana
 
