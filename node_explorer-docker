@@ -1,9 +1,10 @@
-  node_explorer 运行
-  docker run -d \
-   -p 9100:9100 \
-   -v "/proc:/host/proc:ro" \
-   -v "/sys:/host/sys:ro" \
-   -v "/:/rootfs:ro" \
-   --net="host" \
-   --pid="host" \
-   prom/node-exporter
+node_explorer 运行
+docker run -d \
+  --name=node-explorer
+  -p 9100:9100 \
+  -v "/proc:/host/proc:ro" \
+  -v "/sys:/host/sys:ro" \
+  -v "/:/rootfs:ro" \
+  --net="host" \
+  --pid="host" \
+  prom/node-exporter
