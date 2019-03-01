@@ -1,4 +1,5 @@
 node_explorer 运行
+
 docker run -d \
   --name=node-explorer
   -p 9100:9100 \
@@ -8,3 +9,17 @@ docker run -d \
   --net="host" \
   --pid="host" \
   prom/node-exporter
+  
+  
+  offical advice 
+docker run -d \
+  -p 9100:9100 \
+  -v "/proc:/host/proc" \
+  -v "/sys:/host/sys" \
+  -v "/:/rootfs" \
+  --net="host" \
+  --name=node quay.io/prometheus/node-exporter \
+  -collector.procfs /host/proc \
+  -collector.sysfs /host/sys \
+  -collector.filesystem.ignored-mount-points "^/(sys|proc|dev|host|etc)($|/)"
+
