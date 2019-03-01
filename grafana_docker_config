@@ -1,0 +1,40 @@
+http://docs.grafana.org/installation/docker/
+All options defined in conf/grafana.ini can be overridden using environment variables by using the syntax GF_<SectionName>_<KeyName>. For example:
+
+$ docker run \
+  -d \
+  -p 3000:3000 \
+  --name=grafana \
+  -e "GF_SERVER_ROOT_URL=http://grafana.server.name" \
+  -e "GF_SECURITY_ADMIN_PASSWORD=secret" \
+  grafana/grafana
+
+------------------------------------------------------------------------------
+
+Installing Plugins for Grafana
+
+Pass the plugins you want installed to docker with the GF_INSTALL_PLUGINS environment variable as a comma separated list. This will pass each plugin name to grafana-cli plugins install ${plugin} and install them when Grafana starts.
+
+docker run \
+  -d \
+  -p 3000:3000 \
+  --name=grafana \
+  -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource" \
+  grafana/grafana
+  
+-------------------------------------------------------------------------------
+
+Grafana container with persistent storage (recommended)
+
+# create a persistent volume for your data in /var/lib/grafana (database and plugins)
+docker volume create grafana-storage
+
+# start grafana
+docker run \
+  -d \
+  -p 3000:3000 \
+  --name=grafana \
+  -v grafana-storage:/var/lib/grafana \
+  grafana/grafana
+
+
