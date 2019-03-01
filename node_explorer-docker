@@ -1,0 +1,6 @@
+  node_explorer 运行
+  docerk run -d \
+   --net="host" \
+   --pid="host" \
+   -v "/:/host:ro,rsalve" \
+   quay.io/pormetheus/node-exporter --path.rootfs /host
