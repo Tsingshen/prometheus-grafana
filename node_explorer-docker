@@ -1,27 +1,3 @@
 node_explorer 运行
-
-docker run -d \
-  --name=node-explorer
-  -p 9100:9100 \
-  -v "/proc:/host/proc:ro" \
-  -v "/sys:/host/sys:ro" \
-  -v "/:/rootfs:ro" \
-  --net="host" \
-  --pid="host" \
-  prom/node-exporter
-  
-  
-  offical advice 
-docker run -d \
-  -p 9100:9100 \
-  -v "/proc:/host/proc" \
-  -v "/sys:/host/sys" \
-  -v "/:/rootfs" \
-  --net="host" \
-  --pid="host" \
-  --name=node \
-  quay.io/prometheus/node-exporter \
-  -collector.procfs /host/proc \
-  -collector.sysfs /host/sys \
-  -collector.filesystem.ignored-mount-points "^/(sys|proc|dev|host|etc)($|/)"
-
+##offical advice expose 9100
+docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  quay.io/prometheus/node-exporter
