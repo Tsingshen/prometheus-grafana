@@ -10,4 +10,5 @@ docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  quay.io/prometheus/
 
 grafana运行
 docker run -d -u root -p 3000:3000 --name=grafana -v /data/grafana:/var/lib/grafana grafana/grafana
+###安装plugin记得查看说明，插件有依赖的要安装，比如node-exporter需要安装grafana-cli plugins install grafana-piechart-panel
 
