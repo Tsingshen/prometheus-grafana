@@ -61,7 +61,18 @@ receivers:
     wechat_configs: # 企业微信报警配置
     - send_resolved: #  企业微信报警配置
       to_party: '1' # 接收组的id
-      agent_id：'1000002' # (企业微信)
+      agent_id：'1000002' # (企业微信-->自定应用-->AgentId)
+      corp_id: '<company_name>'
+      api_secrets: '<apiSecrets>'
+      message: '{{ template "test_wechat.html" . }}' # 发送信息模板设定
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
+### 
 
 docker run -d --name alertmanager -p 9093:9093 prom/alertmanager
 
