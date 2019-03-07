@@ -18,6 +18,17 @@ docker run -d -u root -p 3000:3000 --name=grafana -v /data/grafana:/var/lib/graf
 
 
 altermanager 运行
+### prom/alertmanager on hub.docker.com/u/prom名下
+### two parts: rule and alartmanager. 
+### Alerting with Prometheus is separated into two parts. Alerting rules in Prometheus servers send alerts to an Alertmanager.
+### The main steps to setting up alerting and notifications are:
+
+##    Setup and configure the Alertmanager
+##    Configure Prometheus to talk to the Alertmanager
+##    Create alerting rules in Prometheus
+##  vim /etc/alertmanager/alertmanager.yml
+
+docker run -d --name alertmanager -p 9093:9093 prom/alertmanager
 
 
 dokcer-exporer 运行
