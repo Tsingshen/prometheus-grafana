@@ -21,6 +21,7 @@ altermanager 运行
 
 dokcer-exporer 运行
 ###基于cAdvisor,容器端口8080
+###sed -i '2,/true/s/$/\\/g' 进行替换
 docker run -d \
   -p 8080:8080 \
   -v /:/rootfs:ro \
