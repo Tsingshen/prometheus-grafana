@@ -1,5 +1,6 @@
 prometheus server运行
 ##https://prometheus.io/docs/introduction/overview/
+### exporter添加修改配置文件prometheus.yml，重启生效
 docker run -d -p 9090:9090 -v /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 ##also to mount your local prometheus.yml on /etc/prometheus/prometheus.yml
@@ -22,6 +23,7 @@ altermanager 运行
 dokcer-exporer 运行
 ###基于cAdvisor,容器端口8080
 ###sed -i '2,/true/s/$/\\/g' 进行替换
+###api   ip:port/metrics配置prometheus
 docker run -d \
   -p 8080:8080 \
   -v /:/rootfs:ro \
