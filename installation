@@ -8,7 +8,7 @@ docker run -d -p 9090:9090 -v /data/prometheus/prometheus.yml:/etc/prometheus/pr
 node_explorer 运行
 ##offical advice expose 9100
 #https://github.com/prometheus/node_exporter
-docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  quay.io/prometheus/node-exporter
+docker run -d --net="host"  --pid="host" --cap-add=SYS_TIME  prom/node-exporter
 
 
 grafana运行
