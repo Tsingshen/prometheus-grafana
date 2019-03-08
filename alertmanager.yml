@@ -1,3 +1,10 @@
+###  分五步进行配置
+### 第一步、安装Alertmanager
+### 第二步、配置alertmanager.yml配置文件
+### 第三步、 *.tmpl模板配置
+### 第四步、在prometheus模块中定义告警规则（alertmanager_rules.yml与prometheus.yml同目录）
+### 第五步、告警信息生命周期的3个状态，1）inactive,2)pending,3）firing
+
 # 全局配置项
 global:
   resolve_timeout: 5m # 处理超时时间，默认为5min
