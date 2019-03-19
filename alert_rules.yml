@@ -10,7 +10,15 @@ groups:
       summary: "GroupName: {{ $labels.group }}"  #对应promethus.yml中labels变量
       description: "内存使用率已超过 25%，请知。"
       value: "{{ $value }}"
-      
+  - alert： "cpu报警"
+    expr: 100 - avg(irate(node_cpu_seconds_total(mode="idel")[1m])) * 100 > 5
+    for: 5s
+    labels:
+      serverity: warning
+    annotations:
+      summary: "GroupName: {{ $labels.group }}"
+      description: "CPU使用率已超过 5%，请知。"
+      value: "{{ $value }}"
       
 ##########################################################################################
 rules下面就是设置的具体规则。
