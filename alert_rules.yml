@@ -1,0 +1,13 @@
+groups:
+- name: test_mem
+  rules: 
+  - alert: "内存报警"
+    expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes ) * 100 > 25
+    for: 15s
+    labels:
+      serverity: warning
+    annotations:
+      summary: "GroupName: {{ $labels.group }}"  #对应promethus.yml中labels变量
+      description: "内存使用率已超过 25%，请知。"
+      value: "{{ $value }}"
+     
