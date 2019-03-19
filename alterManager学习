@@ -1,0 +1,12 @@
+p8s将数据采集和报警分成了两个模板。报警规则配置在p8s server上，然后发送报警信息到AlertManager,然后AlertManager来管理这些报警信息，包括silencing, inhibition
+聚合报警信息后，通达email,pagerduty,hipchat,slack等方式发送消息提示。
+
+让Alertmanager提供服务，分三部了:安装配置alertmanager/配置p8s与alertmanager通信/在p8s中创建报警规则。
+
+第一步，安装配置alertmanager
+需要编写alertmanager.yml,即alertmanager的配置文件，定义邮件发送，定义一些规则等，参考alertmanager.yml文件，然后起容器服务。
+第二步，配置p8s与alertmanager通信
+需要在prometheus.yml中添加group,配置alerting,接入alertmanager,配置rule_files,定义alert_rules.yml。
+第三步，在p8s中创建报警规则
+即第二步中的rule_files下的alert_rules.yml，参考文件即可。
+
