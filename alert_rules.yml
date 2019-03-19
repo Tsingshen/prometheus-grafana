@@ -1,6 +1,6 @@
 groups:
-- name: test_mem
-  rules: 
+- name: test_mem  
+  rules:    
   - alert: "内存报警"
     expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes ) * 100 > 25
     for: 15s
@@ -10,4 +10,10 @@ groups:
       summary: "GroupName: {{ $labels.group }}"  #对应promethus.yml中labels变量
       description: "内存使用率已超过 25%，请知。"
       value: "{{ $value }}"
+      
+      
+##########################################################################################
+rules下面就是设置的具体规则。
+告警规则的设置主要在于expr表达式的设置，以及annotations里面的提示消息的设置。
+expr是基于promSQL查询语言的，可以参考grafana里的模板，然后结合prometheus上进行语句验证，生成自己需要的表达式。
      
