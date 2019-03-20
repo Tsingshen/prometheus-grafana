@@ -1,3 +1,27 @@
+pullgateway可以使用接口进行数据传入
+例如
+添加单条数据
+echo "some_metric 3.14" | curl --data-binary @- http://pushgateway.example.org:9091/metrics/job/some_job
+添加更多更复杂数据
+cat <<EOF | curl --data-binary @- http://pushgateway.example.org:9091/metrics/job/some_job/instance/some_instance
+# TYPE some_metric counter 
+some_metric{label="val1"} 42 
+# TYPE another_metric gauge 
+# HELP another_metric Just an example. 
+another_metric 2398.283 
+EOF
+
+删除某个组下的某实例的所有数据：
+curl -X DELETE http://pushgateway.example.org:9091/metrics/job/some_job/instance/some_instance
+删除某个组下的所有数据：
+curl -X DELETE http://pushgateway.example.org:9091/metrics/job/some_job
+
+可以发现，pushgateway中的数据是按按照job和instance进行分组分类的，所以这二个参数不可缺少。
+因为p8s配置pushgateway的时候，会指定job和instance,但是它只表示pushgateway实例，不能真正表达收集数据的含义。所以，在p8s中配置pushgateway的时候
+需要添加honor_labels: true,从而避免收集的数据本身job和instance被覆盖。
+
+另外，为了防止pushgateway重启或意外挂掉，导致数据丢失，我们可以通过 -persistence.file和 -persistence.interval 参数将数据持久化下来。
+
 一些概念
 
 作为新一代的监控框架，Prometheus 具有以下特点：
