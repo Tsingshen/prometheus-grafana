@@ -1,12 +1,12 @@
 groups:
 - name: test_mem  
   rules:    
-  - alert: "内存报警"
-    expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes ) * 100 > 25
-    for: 15s
+  - alert: "内存报警"  # 报警名称
+    expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes ) * 100 > 25 # 判断条件
+    for: 15s  # 条件持续15s 才会发出alert
     labels:
-      serverity: warning
-    annotations:
+      serverity: warning   #  设置alert的标签，可用于标识alert.
+    annotations:   # alertr 的其它标签，但不用于标识alert
       summary: "GroupName: {{ $labels.group }}"  #对应promethus.yml中labels变量
       description: "内存使用率已超过 25%，请知。"
       value: "{{ $value }}"
