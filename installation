@@ -49,5 +49,7 @@ docker run -d \
 
 pushGateway 运行
 
+docker run -d -p 9091:9091 prom/pushgateway
+
 
 k8s集成
